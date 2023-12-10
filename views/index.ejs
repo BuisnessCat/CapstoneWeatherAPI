@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherTrack</title>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,700&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <form method="post" action="/">
+            <div class="search">
+                <input name = "cityName" type="search" placeholder="Enter city name" spellcheck="false">
+                <button type="submit"><img src="/images/search.png"></button>
+            </div>
+        </form>
+        <% if(locals.data) {%>
+        <div class="weather">
+            <img src="/images/clear.png">
+            <h1></h1>
+            <h2></h2>
+        
+            <div class="details">
+
+                <div class="col">
+                    <img src="/images/humidity.png">
+                    <div>
+                        <p class="humidity"></p>
+                        <p></p>
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <img src="/images/wind.png">
+                    <div>
+                        <p class="wind"></p>
+                        <p></p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+        <% }else {%>
+            <p>Waiting for data...</p>
+            <% } %>
+    </div>
+</body>
+
+</html>
