@@ -20,27 +20,27 @@
                 <button type="submit"><img src="/images/search.png"></button>
             </div>
         </form>
-        <% if(locals.data) {%>
+        <% if(locals.temp) {%>
         <div class="weather">
             <img src="/images/clear.png">
-            <h1></h1>
-            <h2></h2>
+            <h1> <%= temp %> </h1>
+            <h2> <%= city %> </h2>
         
             <div class="details">
 
                 <div class="col">
                     <img src="/images/humidity.png">
                     <div>
-                        <p class="humidity"></p>
-                        <p></p>
+                        <p class="humidity"> <%= hum_value %>% </p>
+                        <p>Humidity</p>
                     </div>
                 </div>
                 
                 <div class="col">
                     <img src="/images/wind.png">
                     <div>
-                        <p class="wind"></p>
-                        <p></p>
+                        <p class="wind"> <%= wind_value %>m/s </p>
+                        <p>Wind Speed</p>
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
             </div>
         </div>
         <% }else {%>
-            <p>Waiting for data...</p>
+            <p class="wait">Waiting for data...</p>
             <% } %>
     </div>
 </body>

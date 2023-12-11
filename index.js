@@ -17,24 +17,42 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
 app.get("/", (req, res) => {
     res.render("index.ejs")
 })
 
 app.post("/", async(req, res) => {
     const cityName = req.body.cityName;
-    const params = {
+    const cityParams = {
         q: cityName,
         appid: apiKey,
     }
     try {
-        const result =  await axios.get(API_URL_CITY, {params: params})
-        console.log(result.data[0].lat)
-        console.log(result.data[0].lon)
+        const geoResult =  await axios.get(API_URL_CITY, {params: cityParams})
+        const Latitude = geoResult.data[0].lat
+        const Longitude = geoResult.data[0].lon
+        const cityResult = geoResult.data[0].local_names.en
+
+        const weatherParams = {
+            lat: Latitude,
+            lon: Longitude,
+            appid: apiKey,
+        }
+
+        const weatherResult = await axios.get(API_URL_WEATHER, {params: weatherParams})
+        const tempResult = Math.floor((weatherResult.data.main.temp)-273,15)
+        const humResult = weatherResult.data.main.humidity
+        const windResult = weatherResult.data.wind.speed
+
+        res.render("index.ejs", {
+            temp: tempResult,
+            city: cityResult,
+            hum_value: humResult,
+            wind_value: windResult
+        })
 
     } catch(error){
-
+        res.send("404 nahuj poka")
     }
 });
 
