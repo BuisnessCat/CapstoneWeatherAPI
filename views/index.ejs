@@ -14,20 +14,26 @@
 
 <body>
     <div class="container">
+
+    <%# HTML code for JS Post method --> input, search button %>
         <form method="post" action="/">
             <div class="search">
                 <input name = "cityName" type="search" placeholder="Enter city name" spellcheck="false">
                 <button type="submit"><img src="/images/search.png"></button>
             </div>
         </form>
+
         <% if(locals.temp) {%>
         <div class="weather">
-            <img src="/images/clear.png">
-            <h1> <%= temp %> </h1>
+
+        <%# HTML code for main data --> temperature, city name and picture %>
+            <img src="<%= image %>">
+            <h1> <%= temp %>°C </h1>
             <h2> <%= city %> </h2>
         
             <div class="details">
 
+            <%# HTML code for humidity icon and value %>
                 <div class="col">
                     <img src="/images/humidity.png">
                     <div>
@@ -35,11 +41,12 @@
                         <p>Humidity</p>
                     </div>
                 </div>
-                
+            
+            <%# HTML code for wind icon and value %>
                 <div class="col">
                     <img src="/images/wind.png">
                     <div>
-                        <p class="wind"> <%= wind_value %>m/s </p>
+                        <p class="wind"> <%= wind_value %> m/s </p>
                         <p>Wind Speed</p>
                     </div>
                 </div>
@@ -47,6 +54,8 @@
                 </div>
             </div>
         </div>
+
+        <%# Until we pressed search button and started JS Post method %>
         <% }else {%>
             <p class="wait">Waiting for data...</p>
             <% } %>
